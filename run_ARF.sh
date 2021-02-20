@@ -20,6 +20,12 @@ learner="(
   -warningDetectionMethod (ADWINChangeDetector -a 0.01)\
   -treeLearner $tree_learner\
 )"
+task="EvaluatePrequential\
+  -stream generators.RandomTreeGenerator\
+  -instanceLimit 100000\
+  -sampleFrequency 10000\
+  -learner $learner"
 
-java -cp `pwd`/moa/target/moa-2020.12.1-SNAPSHOT.jar -javaagent:sizeofag-1.0.4.jar moa.DoTask \
-"EvaluatePrequential -instanceLimit 10000 -sampleFrequency 1000 -learner $learner"
+java -cp `pwd`/moa/target/moa-2020.12.1-SNAPSHOT.jar \
+     -javaagent:./lib/sizeofag-1.0.4.jar \
+     moa.DoTask $task
