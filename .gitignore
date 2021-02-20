@@ -1,6 +1,7 @@
-/target/
+logs/
+target/
 .idea
 *.iml
 *~
 *.bak
-
+*.jar
