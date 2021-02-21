@@ -40,6 +40,11 @@ public class InstanceImpl implements MultiLabelInstance {
     protected InstancesHeader instanceHeader;
 
     /**
+     * The instance class index.
+     */
+    protected int classIndex;
+
+    /**
      * Instantiates a new instance.
      *
      * @param inst the inst
@@ -48,6 +53,13 @@ public class InstanceImpl implements MultiLabelInstance {
         this.weight = inst.weight;
         this.instanceData = inst.instanceData.copy();
         this.instanceHeader = inst.instanceHeader;
+        this.classIndex = this.instanceHeader.classIndex();
+        if(this.classIndex == Integer.MAX_VALUE) {
+          if(this.instanceHeader.instanceInformation.range!=null)
+            this.classIndex=this.instanceHeader.instanceInformation.range.getStart();
+          else
+            this.classIndex=0;
+        }
     }
 
     //Dense
@@ -286,14 +298,7 @@ public class InstanceImpl implements MultiLabelInstance {
      */
     @Override
     public int classIndex() {
-        int classIndex = instanceHeader.classIndex();
-       // return  ? classIndex : 0;
-        if(classIndex == Integer.MAX_VALUE)
-        	if(this.instanceHeader.instanceInformation.range!=null)
-        		classIndex=instanceHeader.instanceInformation.range.getStart();
-        	else
-        		classIndex=0;
-        return classIndex;
+        return this.classIndex;
     }
 
     /**
