@@ -1,7 +1,5 @@
 #!/bin/bash
 
-N=$1
-
 tree_learner="(
   ARFHoeffdingTree\
 )"
@@ -19,5 +17,5 @@ task="EvaluatePrequential\
   -learner $learner"
 
 java -cp `pwd`/moa/target/moa-2020.12.1-SNAPSHOT.jar \
-     -javaagent:./lib/sizeofag-1.0.4.jar \
+     -javaagent:./lib/sizeofag-1.0.5.jar \
      moa.DoTask $task

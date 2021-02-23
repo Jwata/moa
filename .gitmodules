@@ -1,0 +1,3 @@
+[submodule "sizeofag"]
+	path = sizeofag
+	url = https://github.com/fracpete/sizeofag
