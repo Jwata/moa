@@ -1,23 +1,15 @@
 #!/bin/bash
 
+N=$1
+
 tree_learner="(
   ARFHoeffdingTree\
-  -subspaceSizeSize 60\
-  -memoryEstimatePeriod 2000000\
-  -gracePeriod 1000\
-  -splitConfidence 0.05\
-  -tieThreshold 0.0\
-  -binarySplits\
-  -noPrePrune\
-  -leafprediction MC\
 )"
 learner="(
   meta.AdaptiveRandomForest\
+  -j $N\
   -ensembleSize 100\
   -mFeaturesMode (Specified m (integer value))\
-  -mFeaturesPerTreeSize 100\
-  -driftDetectionMethod (ADWINChangeDetector -a 0.001)\
-  -warningDetectionMethod (ADWINChangeDetector -a 0.01)\
   -treeLearner $tree_learner\
 )"
 task="EvaluatePrequential\
