@@ -7,7 +7,7 @@ tree_learner="(
 )"
 learner="(
   meta.AdaptiveRandomForest\
-  -j $N\
+  -numberOfJobs $N\
   -ensembleSize 100\
   -mFeaturesMode (Specified m (integer value))\
   -treeLearner $tree_learner\
